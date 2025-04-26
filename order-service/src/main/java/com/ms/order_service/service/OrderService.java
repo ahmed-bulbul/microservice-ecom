@@ -31,6 +31,8 @@ public class OrderService {
             order.setQuantity(orderRequest.quantity());
             orderRepository.save(order);
 
+            log.info("Order {} is placed successfully", order.getOrderNumber());
+
             // Send the message to Kafka Topic
 //            OrderPlacedEvent orderPlacedEvent = new OrderPlacedEvent();
 //            orderPlacedEvent.setOrderNumber(order.getOrderNumber());
