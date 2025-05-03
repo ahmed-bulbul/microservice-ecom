@@ -69,7 +69,6 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
-#
 
   mysql-backup:
     container_name: mysql-backup
@@ -90,7 +89,7 @@ services:
         TIMESTAMP=$(date +%Y%m%d%H%M%S);
         echo 'Backing up at' \$TIMESTAMP;
         mysqldump --host=keycloak-mysql --user=root --password=root keycloak > /backup/keycloak_backup_\${TIMESTAMP}.sql;
-        sleep 60;
+        sleep 6000;
       done
       "
     depends_on:

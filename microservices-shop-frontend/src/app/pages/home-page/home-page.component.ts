@@ -31,8 +31,10 @@ export class HomePageComponent implements OnInit {
   orderFailed = false;
 
   ngOnInit(): void {
+    console.log("Before authenticate......")
     this.oidcSecurityService.isAuthenticated$.subscribe(
       ({isAuthenticated}) => {
+        console.log("authenticatd....")
         this.isAuthenticated = isAuthenticated;
         this.productService.getProducts()
           .pipe()
@@ -52,8 +54,10 @@ export class HomePageComponent implements OnInit {
     this.oidcSecurityService.userData$.subscribe(result => {
       const userDetails = {
         email: result.userData.email,
-        firstName: result.userData.firstName,
-        lastName: result.userData.lastName
+        //firstName: result.userData.firstName,
+        //lastName: result.userData.lastName
+        firstName:"Bulbul",
+        lastName:"Ahmed"
       };
 
       if(!quantity) {
@@ -62,7 +66,7 @@ export class HomePageComponent implements OnInit {
         this.quantityIsNull = true;
       } else {
         const order: Order = {
-          skuCode: product.skuCode,
+          skuCode: product.name,
           price: product.price,
           quantity: Number(quantity),
           userDetails: userDetails
